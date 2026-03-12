@@ -2,8 +2,17 @@ const Post = require("../../models/posts/blogPosts");
 const slugify = require("slugify");
 
 const createNewPost = async (postData) => {
-  const { title, content, excerpt, categories, tags, featuredImage, userId } =
-    postData;
+  const {
+    title,
+    content,
+    excerpt,
+    categories: parsCat,
+    tags: parsT,
+    userId,
+    isFeatured,
+    img,
+    status,
+  } = postData;
 
   //slag create
   const slug = slugify(title, {
@@ -12,18 +21,28 @@ const createNewPost = async (postData) => {
     replacement: "-",
   });
 
+  // নিরাপদভাবে পার্স করার নিয়ম
+  const categories = parsCat ? JSON.parse(parsCat) : [];
+  const tags = parsT ? JSON.parse(parsT) : [];
+
   const newPost = new Post({
     title,
     slug,
     content,
     excerpt,
+    status,
     categories, //Array
     tags, //Array
-    featuredImage, //Object {url, public_id}
+    featuredimage: {
+      url: `/${img.path.replace(/\\/g, "/")}`,
+      public_id: img.filename,
+    }, //Object {url, public_id}
     author: userId,
+    isFeatured: isFeatured === "true",
   });
   // ৩. ডাটাবেজে সেভ করা
   const savedPost = await newPost.save();
+
   return savedPost;
 };
 module.exports = createNewPost;
