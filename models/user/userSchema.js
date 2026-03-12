@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
     },
     // ২. প্রোফাইল ইনফরমেশন (যেগুলো ইউজার পরে আপডেট করবে)
     designation: { type: String, default: "Professional Developer" },
-    address: { type: String, default: "" },
+    address: { type: String, default: "Dhaka, Bangladesh" },
     avatar: { type: String, default: "https://i.ibb.co" }, // ডিফল্ট প্রোফাইল পিকচার}
     aboutme: { type: String, default: "" },
     // ৩. সোশ্যাল লিঙ্কস (অবজেক্ট আকারে রাখা ভালো)

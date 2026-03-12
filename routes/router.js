@@ -2,11 +2,13 @@ const express = require("express");
 const catchAsync = require("../utils/catchAsync");
 const ErrorHandler = require("../utils/error");
 const authControllers = require("../controllers/Auth/authController");
+const allPostController = require("../controllers/post/allPostController");
 
 const router = express.Router();
 
 router.post("/signup", authControllers.signup);
 router.post("/login", authControllers.login);
+router.post("/createpost", allPostController.createPost);
 router.get(
   "/",
   catchAsync(async (req, res, next) => {
