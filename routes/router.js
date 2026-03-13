@@ -7,7 +7,9 @@ const upload = require("../services/storage/storage");
 
 const router = express.Router();
 
-router.get("/post/:id");
+router.get("/featured", allPostController.featurePost);
+router.get("/post/:id", allPostController.getPost);
+router.get("/post", allPostController.paginationPost);
 router.post("/signup", authControllers.signup);
 router.post("/login", authControllers.login);
 router.post(

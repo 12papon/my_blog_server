@@ -58,5 +58,6 @@ const blogPosts = new mongoose.Schema(
 );
 
 blogPosts.index({ title: "text", content: "text" });
+blogPosts.index({ views: -1 });
 
 module.exports = mongoose.model("Post", blogPosts);
