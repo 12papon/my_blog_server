@@ -7,6 +7,7 @@ const upload = require("../services/storage/storage");
 
 const router = express.Router();
 
+router.get("/post/:id");
 router.post("/signup", authControllers.signup);
 router.post("/login", authControllers.login);
 router.post(
