@@ -57,6 +57,7 @@ const paginationPost = catchAsync(async (req, res, next) => {
     message: "Pagination successfully!",
     data: getPagiPost.postData,
     totalPage: getPagiPost.totalPage,
+    currentPage: page,
   });
 });
 

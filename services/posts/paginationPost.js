@@ -5,6 +5,7 @@ const pagiPost = async ({ page, limit, skip }) => {
     .sort({ views: -1 })
     .skip(skip)
     .limit(limit)
+    .populate("author", "name avatar")
     .exec();
 
   const totalPost = await Post.countDocuments({});

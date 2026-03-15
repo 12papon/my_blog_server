@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const corsPolicy = require("./utils/corsPolicy");
 const dbConnection = require("./config/databaseConfig/dbConfig");
 const errorHandler = require("./middleware/errorHandler/errorHandler");
@@ -13,6 +14,8 @@ app.use(cors(corsPolicy));
 app.use(express.json());
 //Database connection
 dbConnection();
+//static middleware
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 //Router setUp
 app.use("/my_blog", router);
 // error handler
