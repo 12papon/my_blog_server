@@ -3,6 +3,8 @@ const catchAsync = require("../utils/catchAsync");
 const ErrorHandler = require("../utils/error");
 const authControllers = require("../controllers/Auth/authController");
 const allPostController = require("../controllers/post/allPostController");
+const comment = require("../controllers/comment/createComment");
+const getComment = require("../controllers/comment/getComment");
 const upload = require("../services/storage/storage");
 
 const router = express.Router();
@@ -10,8 +12,10 @@ const router = express.Router();
 router.get("/featured", allPostController.featurePost);
 router.get("/post/:id", allPostController.getPost);
 router.get("/post", allPostController.paginationPost);
+router.get("/comment/:id", getComment);
 router.post("/signup", authControllers.signup);
 router.post("/login", authControllers.login);
+router.post("/postcomment", comment.createComment);
 router.post(
   "/createpost",
   upload.single("featuredimage"),
