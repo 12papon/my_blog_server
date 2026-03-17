@@ -5,6 +5,7 @@ const authControllers = require("../controllers/Auth/authController");
 const allPostController = require("../controllers/post/allPostController");
 const comment = require("../controllers/comment/createComment");
 const getComment = require("../controllers/comment/getComment");
+const likeUpdater = require("../controllers/like/likeCreate");
 const upload = require("../services/storage/storage");
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.get("/comment/:id", getComment);
 router.post("/signup", authControllers.signup);
 router.post("/login", authControllers.login);
 router.post("/postcomment", comment.createComment);
+router.post("/like/:postId", likeUpdater);
 router.post(
   "/createpost",
   upload.single("featuredimage"),
